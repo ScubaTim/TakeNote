@@ -1,5 +1,4 @@
-import React from 'react';
-//import noteService from '../services/notes';
+import React, { useState } from 'react';
 import Toolbar from './Toolbar';
 import NotesList from './NotesList';
 import NoteEditor from './NoteEditor';
@@ -27,28 +26,28 @@ let notes = [
 ];
 
 const App = () => {
-    //const [viewToggle, setViewToggle] = useState(false);
-    //const [notesList, setNotesList] = useState([]);
+    const [newNote, setNewNote] = useState(false);
 
-    /*useEffect(() => {
-        noteService
-            .getAll()
-            .then(initialNotes => {
-                setNotesList(initialNotes)
-            });
-    }, []);
+    const handleNewNote = () => {
+        setNewNote(!newNote);
+    }
 
-    const viewToggleHandler = () => {
-        setViewToggle(!viewToggle);
-    };*/
-
+    if (notes.length === 0) {
+        return (
+            <div>
+                <Toolbar createNote={handleNewNote} />
+                <Container>
+                    <NoteEditor />
+                </Container>
+            </div>
+        );
+    }
 
     return (
         <div>
-            <Toolbar />
+            <Toolbar createNote={handleNewNote} />
             <Container>
-                <NotesList notesList={notes} />
-                <NoteEditor />
+                {newNote ? <NoteEditor /> : <NotesList notesList={notes} />}
             </Container>
         </div>
     );

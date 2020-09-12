@@ -1,20 +1,11 @@
 import React from 'react';
-//import noteService from '../services/notes';
 import { Card, CardTitle, CardText, Row, Col, Button, Badge } from 'reactstrap';
 
-const Note = ({ note, notesList, setNotesList }) => {
+const Note = ({ note }) => {
 
-    /*const deleteNote = () => {
-        noteService
-            .remove(note.id)
-            .then(
-                () => setNotesList(notesList.filter(n => n !== note.id)),    //Why doesn't this update the state?
-                console.log("Note has been deleted but view won't update. Sad panda.")
-            );
-    }*/
 
     return (
-        < Card body className="mx-2 my-3" >
+        <Card body className="mx-2 my-3" >
             <Row>
                 <Col>
                     <CardTitle className="font-weight-bold">{note.title}</CardTitle>
