@@ -12,7 +12,6 @@ const App = () => {
     const handleNewNote = () => {
         setNewNote(!newNote);
     }
-    console.log()
 
     useEffect(() => {
         axios
@@ -29,7 +28,7 @@ const App = () => {
             <div>
                 <Toolbar createNote={handleNewNote} />
                 <Container>
-                    <NoteEditor />
+                    <NoteEditor notes={notes} setNotes={setNotes} />
                 </Container>
             </div>
         );
@@ -40,7 +39,7 @@ const App = () => {
         <div>
             <Toolbar createNote={handleNewNote} />
             <Container>
-                {newNote ? <NoteEditor /> : <NotesList notesList={notes} setNotes={setNotes} />}
+                {newNote ? <NoteEditor notes={notes} setNotes={setNotes} /> : <NotesList notesList={notes} setNotes={setNotes} />}
             </Container>
         </div>
     );

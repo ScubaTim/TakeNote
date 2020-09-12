@@ -6,17 +6,14 @@ const Note = ({ note, notesList, setNotes }) => {
 
     const handleRemoveNote = () => {
         const id = note.id;
-        console.log(id)
 
         axios
             .delete(`http://localhost:3001/notes/${id}`)
             .then(res => {
-                console.log('res.data', res);
                 return res.data
             })
 
         setNotes(notesList.filter(note => note.id !== id))
-
     }
 
     return (

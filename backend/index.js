@@ -52,7 +52,7 @@ app.delete('/notes/:id', (req, res) => {
 })
 
 const generateId = () => {
-    const maxId = notes.length > 0
+    let maxId = notes.length > 0
         ? Math.max(...notes.map(n => n.id))
         : 0;
     return maxId++;
@@ -68,6 +68,7 @@ app.post('/notes', (req, res) => {
     };
 
     const note = {
+        title: body.title,
         content: body.content,
         important: body.important || false,
         date: new Date(),
@@ -77,6 +78,7 @@ app.post('/notes', (req, res) => {
     notes = notes.concat(note);
 
     res.json(note);
+    console.log(note);
 })
 
 
