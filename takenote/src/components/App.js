@@ -17,8 +17,8 @@ const App = () => {
     useEffect(() => {
         axios
             .get('http://localhost:3001/notes')
-            .then(response => {
-                const notes = response.data
+            .then(res => {
+                const notes = res.data
                 setNotes(notes);
             })
     }, []);
@@ -40,7 +40,7 @@ const App = () => {
         <div>
             <Toolbar createNote={handleNewNote} />
             <Container>
-                {newNote ? <NoteEditor /> : <NotesList notesList={notes} />}
+                {newNote ? <NoteEditor /> : <NotesList notesList={notes} setNotes={setNotes} />}
             </Container>
         </div>
     );

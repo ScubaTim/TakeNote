@@ -1,8 +1,23 @@
 import React from 'react';
+import axios from 'axios';
 import { Card, CardTitle, CardText, Row, Col, Button, Badge } from 'reactstrap';
 
-const Note = ({ note }) => {
+const Note = ({ note, notesList, setNotes }) => {
 
+    const handleRemoveNote = () => {
+        const id = note.id;
+        console.log(id)
+
+        axios
+            .delete(`http://localhost:3001/notes/${id}`)
+            .then(res => {
+                console.log('res.data', res);
+                return res.data
+            })
+
+        setNotes(notesList.filter(note => note.id !== id))
+
+    }
 
     return (
         <Card body className="mx-2 my-3" >
@@ -11,7 +26,7 @@ const Note = ({ note }) => {
                     <CardTitle className="font-weight-bold">{note.title}</CardTitle>
                 </Col>
                 <Col xs="1">
-                    <Button close />
+                    <Button close onClick={() => handleRemoveNote()} />
                 </Col>
             </Row>
             <Row className="border-bottom pb-2">

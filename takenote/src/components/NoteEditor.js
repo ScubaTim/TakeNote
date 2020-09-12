@@ -1,7 +1,12 @@
 import React from 'react';
+//import axios from 'axios';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 const NoteEditor = () => {
+
+    /*useEffect(() => {
+        axios.post('http://localhost:3001/notes')
+    })*/
 
     return (
         <Form className="border px-5 py-4  mx-4 my-4">

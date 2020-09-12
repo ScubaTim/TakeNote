@@ -10,7 +10,7 @@ export const ListField = styled('div')`
     align-items: space-between;
 `
 
-const NotesList = ({ notesList, setNotesList }) => {
+const NotesList = ({ notesList, setNotes }) => {
     const [showImportant, setShowImportant] = useState(false);
 
     const handleImportantOnly = () => {
@@ -20,7 +20,7 @@ const NotesList = ({ notesList, setNotesList }) => {
     if (showImportant === false) {
         const Notes = notesList.map((note, i) => (
             <Col key={i} xs="4">
-                <Note note={note} notesList={notesList} setNotesList={setNotesList} />
+                <Note note={note} notesList={notesList} setNotes={setNotes} />
             </Col>
         ));
 
@@ -46,10 +46,11 @@ const NotesList = ({ notesList, setNotesList }) => {
                 .filter((note) => note.important)
                 .map((note, i) => (
                     <Col key={i} xs="4">
-                        <Note note={note} notesList={notesList} setNotesList={setNotesList} />
+                        <Note note={note} notesList={notesList} setNotes={setNotes} />
                     </Col>
                 ))
-        )
+        );
+
         return (
             <>
                 <ListField className="py-3">
