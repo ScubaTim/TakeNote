@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-const NoteEditor = ({ notes, setNotes }) => {
+const NoteEditor = ({ notes, setNotes, toggle }) => {
 
     const [noteContent, setNoteContent] = useState("");
     const [newTitle, setNewTitle] = useState("");
@@ -20,7 +20,10 @@ const NoteEditor = ({ notes, setNotes }) => {
             .post('http://localhost:3001/notes', noteObject)
             .then(res => {
                 setNotes(notes.concat(res.data))
-            });
+            })
+        if (notes.length > 0) {
+            toggle();
+        }
     }
 
     const handleTitleChange = (e) => {

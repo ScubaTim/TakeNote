@@ -7,7 +7,7 @@ import {
     Button
 } from 'reactstrap';
 
-const Toolbar = ({ createNote }) => {
+const Toolbar = ({ toggle }) => {
     return (
         <Navbar color="light" light className="border-bottom">
             <NavbarBrand>
@@ -15,7 +15,7 @@ const Toolbar = ({ createNote }) => {
             </NavbarBrand>
             <Nav>
                 <NavItem>
-                    <Button color="info" onClick={() => createNote()}>
+                    <Button color="info" onClick={() => toggle()}>
                         <strong>+</strong> Create New Note
                     </Button>
                 </NavItem>

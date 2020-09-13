@@ -7,10 +7,10 @@ import { Container } from 'reactstrap';
 
 const App = () => {
     const [notes, setNotes] = useState([]);
-    const [newNote, setNewNote] = useState(false);
+    const [toggleEditorView, setToggleEditorView] = useState(false);
 
-    const handleNewNote = () => {
-        setNewNote(!newNote);
+    const handleToggle = () => {
+        setToggleEditorView(!toggleEditorView);
     }
 
     useEffect(() => {
@@ -26,20 +26,20 @@ const App = () => {
     if (notes.length === 0) {
         return (
             <div>
-                <Toolbar createNote={handleNewNote} />
+                <Toolbar toggle={handleToggle} />
                 <Container>
-                    <NoteEditor notes={notes} setNotes={setNotes} />
+                    <NoteEditor notes={notes} setNotes={setNotes} toggle={handleToggle} />
                 </Container>
             </div>
         );
     }
 
-    //If there are notes, show NoteList unless newNote is pressed, then show NoteEditor.
+    //If there are notes, show NoteList unless toggleEditorView is pressed, then show NoteEditor.
     return (
         <div>
-            <Toolbar createNote={handleNewNote} />
+            <Toolbar toggle={handleToggle} />
             <Container>
-                {newNote ? <NoteEditor notes={notes} setNotes={setNotes} /> : <NotesList notesList={notes} setNotes={setNotes} />}
+                {toggleEditorView ? <NoteEditor notes={notes} setNotes={setNotes} toggle={handleToggle} /> : <NotesList notesList={notes} setNotes={setNotes} />}
             </Container>
         </div>
     );

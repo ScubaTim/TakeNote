@@ -47,7 +47,6 @@ app.get('/notes/:id', (req, res) => {
 app.delete('/notes/:id', (req, res) => {
     const id = Number(req.params.id);
     notes = notes.filter(note => note.id !== id)
-
     res.status(204).end();
 })
 
@@ -55,7 +54,7 @@ const generateId = () => {
     let maxId = notes.length > 0
         ? Math.max(...notes.map(n => n.id))
         : 0;
-    return maxId++;
+    return maxId + 1;
 }
 
 app.post('/notes', (req, res) => {
@@ -78,7 +77,6 @@ app.post('/notes', (req, res) => {
     notes = notes.concat(note);
 
     res.json(note);
-    console.log(note);
 })
 
 
