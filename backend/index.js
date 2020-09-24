@@ -57,6 +57,9 @@ const generateId = () => {
     return maxId + 1;
 }
 
+const date = new Date().toLocaleTimeString
+console.log(date)
+
 app.post('/notes', (req, res) => {
     const body = req.body;
 
@@ -70,7 +73,7 @@ app.post('/notes', (req, res) => {
         title: body.title,
         content: body.content,
         important: body.important || false,
-        date: new Date(),
+        date: new Date().toLocaleString(),
         id: generateId()
     };
 
@@ -81,7 +84,7 @@ app.post('/notes', (req, res) => {
 
 
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`)
 });

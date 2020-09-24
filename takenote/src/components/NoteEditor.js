@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
 
 const NoteEditor = ({ notes, setNotes, toggle }) => {
 
@@ -35,7 +35,7 @@ const NoteEditor = ({ notes, setNotes, toggle }) => {
     }
 
     return (
-        <Form className="border px-5 py-4  mx-4 my-4" onSubmit={handleAddNote}>
+        <Form className="border px-3 py-4  mx-4 my-4" onSubmit={handleAddNote}>
             <h2 className="text-center">New Note</h2>
             <FormGroup>
                 <Label for="title">Title:</Label>
@@ -45,13 +45,19 @@ const NoteEditor = ({ notes, setNotes, toggle }) => {
                 <Label for="noteText">Body:</Label>
                 <Input type="textarea" id="noteText" onChange={handleNoteContentChange} style={{ minHeight: "50vh" }} />
             </FormGroup>
-            <FormGroup className="text-right my-2 mr-1" check>
-                <Input type="checkbox" onClick={() => setIsImportant(!isImportant)} />
-                <Label check>
-                    <strong>Important</strong>
-                </Label>
-            </FormGroup>
-            <Button type="submit" color="primary">Save</Button>
+            <Row>
+                <Col>
+                    <Button type="submit" color="primary">Save</Button>
+                </Col>
+                <Col>
+                    <FormGroup className="text-right py-2 mr-3" check>
+                        <Input type="checkbox" onClick={() => setIsImportant(!isImportant)} />
+                        <Label check >
+                            <strong>Important</strong>
+                        </Label>
+                    </FormGroup>
+                </Col>
+            </Row>
         </Form>
     );
 };

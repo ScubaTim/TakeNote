@@ -53,7 +53,7 @@ const NotesList = ({ notesList, setNotes }) => {
 
         return (
             <>
-                <ListField className="py-3">
+                <ListField>
                     <Row>
                         {Notes}
                     </Row>

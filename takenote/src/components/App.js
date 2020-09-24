@@ -16,8 +16,8 @@ const App = () => {
     useEffect(() => {
         axios
             .get('http://localhost:3001/notes')
-            .then(res => {
-                const notes = res.data
+            .then((req, res) => {
+                const notes = req.data
                 setNotes(notes);
             })
     }, []);

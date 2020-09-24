@@ -17,7 +17,7 @@ const Note = ({ note, notesList, setNotes }) => {
     }
 
     return (
-        <Card body className="mx-2 my-3" >
+        <Card body className="mx-2 my-3" style={{ minWidth: "150px" }} >
             <Row>
                 <Col>
                     <CardTitle className="font-weight-bold">{note.title}</CardTitle>
@@ -32,7 +32,7 @@ const Note = ({ note, notesList, setNotes }) => {
                 </Col>
             </Row>
             <CardText className="mt-4">{note.content}</CardText>
-            <Row className="text-right">
+            <Row>
                 <Col>
                     {note.important ? <Badge color="info">Important</Badge> : null}
                 </Col>
