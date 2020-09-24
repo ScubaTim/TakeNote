@@ -17,10 +17,10 @@ const Note = ({ note, notesList, setNotes }) => {
     }
 
     return (
-        <Card body className="mx-2 my-3" style={{ minWidth: "150px" }} >
+        <Card body className="mx-4 my-3" >
             <Row>
                 <Col>
-                    <CardTitle className="font-weight-bold">{note.title}</CardTitle>
+                    <CardTitle className="font-weight-bold">{note.title.toUpperCase()}</CardTitle>
                 </Col>
                 <Col xs="1">
                     <Button close onClick={() => handleRemoveNote()} />

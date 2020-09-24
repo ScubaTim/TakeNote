@@ -19,7 +19,7 @@ const NotesList = ({ notesList, setNotes }) => {
 
     if (showImportant === false) {
         const Notes = notesList.map((note, i) => (
-            <Col key={i} xs="4">
+            <Col key={i} xs="12" sm="6" md="4">
                 <Note note={note} notesList={notesList} setNotes={setNotes} />
             </Col>
         ));
@@ -30,6 +30,7 @@ const NotesList = ({ notesList, setNotes }) => {
                     <Row>
                         {Notes}
                     </Row>
+
                 </ListField>
                 <hr />
                 <Label check className="ml-4 pl-1 my-3">

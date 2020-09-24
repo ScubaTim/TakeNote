@@ -35,7 +35,7 @@ const NoteEditor = ({ notes, setNotes, toggle }) => {
     }
 
     return (
-        <Form className="border px-3 py-4  mx-4 my-4" onSubmit={handleAddNote}>
+        <Form className="border px-3 py-4 my-4" onSubmit={handleAddNote}>
             <h2 className="text-center">New Note</h2>
             <FormGroup>
                 <Label for="title">Title:</Label>
