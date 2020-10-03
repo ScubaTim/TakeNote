@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import noteService from '../services/note';
 import Toolbar from './Toolbar';
 import NotesList from './NotesList';
 import NoteEditor from './NoteEditor';

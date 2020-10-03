@@ -26,17 +26,24 @@ const NotesList = ({ notesList, setNotes }) => {
 
         return (
             <>
-                <ListField className="py-3">
-                    <Row>
-                        {Notes}
-                    </Row>
-
-                </ListField>
-                <hr />
-                <Label check className="ml-4 pl-1 my-3">
-                    <Input type="checkbox" onClick={() => handleImportantOnly()} />
-                        Show Important Only
-                </Label>
+                <Row className="mb-5" style={{ height: "35vh" }}>
+                    <Col>
+                        <ListField className="py-3">
+                            <Row>
+                                {Notes}
+                            </Row>
+                        </ListField>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <hr />
+                        <Label check className="ml-4 pl-1 my-3">
+                            <Input type="checkbox" onClick={() => handleImportantOnly()} />
+                            <span>Show Important Only</span>
+                        </Label>
+                    </Col>
+                </Row>
             </>
         );
     }

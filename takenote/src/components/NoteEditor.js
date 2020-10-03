@@ -53,7 +53,7 @@ const NoteEditor = ({ notes, setNotes, toggle }) => {
                     <FormGroup className="text-right py-2 mr-3" check>
                         <Input type="checkbox" onClick={() => setIsImportant(!isImportant)} />
                         <Label check >
-                            <strong>Important</strong>
+                            <strong >Important</strong>
                         </Label>
                     </FormGroup>
                 </Col>
