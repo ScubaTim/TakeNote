@@ -1,4 +1,5 @@
 import React from 'react';
+//import noteService from '../services/note'
 import axios from 'axios';
 import { Card, CardTitle, CardText, Row, Col, Button, Badge } from 'reactstrap';
 
@@ -12,7 +13,11 @@ const Note = ({ note, notesList, setNotes }) => {
             .then(res => {
                 return res.data
             })
-
+        /*
+        noteService
+            .remove(id)
+            .then(removed => removed)
+        */
         setNotes(notesList.filter(note => note.id !== id))
     }
 

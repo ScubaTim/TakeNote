@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:3001/notes'
+const baseUrl = 'https://arcane-atoll-55268.herokuapp.com/notes'
 
 const getAll = () => {
     const req = axios.get(baseUrl)
@@ -16,4 +16,10 @@ const update = (newObject, id) => {
     return req.then(res => res.data)
 }
 
-export default { getAll, create, update }
+const remove = (id) => {
+    const req = axios.delete(id)
+    console.log('note removed')
+    return req.then(res => res.status(204).end())
+}
+
+export default { getAll, create, update, remove }
