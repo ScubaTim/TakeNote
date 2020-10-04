@@ -3,7 +3,7 @@ import noteService from '../services/note';
 import Toolbar from './Toolbar';
 import NotesList from './NotesList';
 import NoteEditor from './NoteEditor';
-import { Container } from 'reactstrap';
+import { Container, Row, Col } from 'reactstrap';
 
 const App = () => {
     const [notes, setNotes] = useState([]);
@@ -28,7 +28,11 @@ const App = () => {
             <div>
                 <Toolbar toggle={handleToggle} />
                 <Container>
-                    <NoteEditor notes={notes} setNotes={setNotes} toggle={handleToggle} />
+                    <Row>
+                        <Col>
+                            <NoteEditor notes={notes} setNotes={setNotes} toggle={handleToggle} />
+                        </Col>
+                    </Row>
                 </Container>
             </div>
         );
@@ -39,7 +43,11 @@ const App = () => {
         <div>
             <Toolbar toggle={handleToggle} />
             <Container>
-                {toggleEditorView ? <NoteEditor notes={notes} setNotes={setNotes} toggle={handleToggle} /> : <NotesList notesList={notes} setNotes={setNotes} />}
+
+                {toggleEditorView
+                    ? <Row><Col><NoteEditor notes={notes} setNotes={setNotes} toggle={handleToggle} /> </Col></Row>
+                    : <Row><Col><NotesList notesList={notes} setNotes={setNotes} /></Col></Row>}
+
             </Container>
         </div>
     );

@@ -26,7 +26,7 @@ const NotesList = ({ notesList, setNotes }) => {
 
         return (
             <>
-                <Row className="mb-5" style={{ height: "35vh" }}>
+                <Row className="mb-5">
                     <Col>
                         <ListField className="py-3">
                             <Row>
@@ -61,16 +61,24 @@ const NotesList = ({ notesList, setNotes }) => {
 
         return (
             <>
-                <ListField>
-                    <Row>
-                        {Notes}
-                    </Row>
-                </ListField>
-                <hr />
-                <Label check className="ml-4 pl-1 my-3">
-                    <Input type="checkbox" onClick={() => handleImportantOnly()} />
+                <Row className="mb-5">
+                    <Col>
+                        <ListField>
+                            <Row>
+                                {Notes}
+                            </Row>
+                        </ListField>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <hr />
+                        <Label check >
+                            <Input type="checkbox" onClick={() => handleImportantOnly()} />
                         Show All
-                </Label>
+                        </Label>
+                    </Col>
+                </Row>
             </>
         )
     }
