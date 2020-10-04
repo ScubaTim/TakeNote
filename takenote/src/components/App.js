@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import noteService from '../services/note';
 import Toolbar from './Toolbar';
 import NotesList from './NotesList';
@@ -10,18 +9,18 @@ const App = () => {
     const [notes, setNotes] = useState([]);
     const [toggleEditorView, setToggleEditorView] = useState(false);
 
-    const handleToggle = () => {
-        setToggleEditorView(!toggleEditorView);
-    }
-
     useEffect(() => {
-        axios
-            .get('http://localhost:3001/notes')
-            .then((req, res) => {
-                const notes = req.data
-                setNotes(notes);
+        noteService
+            .getAll()
+            .then(initialNotes => {
+                setNotes(initialNotes)
             })
     }, []);
+
+    const handleToggle = () => {
+        setToggleEditorView(!toggleEditorView);
+        console.log(notes)
+    }
 
     //If no notes to display, show note editor instead.
     if (notes.length === 0) {

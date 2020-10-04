@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import noteService from '../services/note';
 import { Button, Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
 
 const NoteEditor = ({ notes, setNotes, toggle }) => {
@@ -10,17 +10,18 @@ const NoteEditor = ({ notes, setNotes, toggle }) => {
 
     const handleAddNote = (event) => {
         event.preventDefault();
-        const noteObject = {
+        const newObject = {
             title: newTitle,
             content: noteContent,
             important: isImportant,
         }
 
-        axios
-            .post('http://localhost:3001/notes', noteObject)
-            .then(res => {
-                setNotes(notes.concat(res.data))
+        noteService
+            .create(newObject)
+            .then((returnedNote) => {
+                setNotes(notes.concat(returnedNote))
             })
+
         if (notes.length > 0) {
             toggle();
         }
