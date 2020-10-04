@@ -26,7 +26,7 @@ app.get('/notes/:id', (req, res) => {
 app.delete('/notes/:id', (req, res) => {
     const id = Number(req.params.id);
     notes = notes.filter(note => note.id !== id)
-    res.status(204).end();
+    return res.status(204).end();
 })
 
 const generateId = () => {
@@ -35,9 +35,6 @@ const generateId = () => {
         : 0;
     return maxId + 1;
 }
-
-const date = new Date().toLocaleTimeString
-console.log(date)
 
 app.post('/notes', (req, res) => {
     const body = req.body;

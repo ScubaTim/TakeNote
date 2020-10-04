@@ -1,6 +1,5 @@
 import React from 'react';
-//import noteService from '../services/note'
-import axios from 'axios';
+import noteService from '../services/note'
 import { Card, CardTitle, CardText, Row, Col, Button, Badge } from 'reactstrap';
 
 const Note = ({ note, notesList, setNotes }) => {
@@ -8,16 +7,10 @@ const Note = ({ note, notesList, setNotes }) => {
     const handleRemoveNote = () => {
         const id = note.id;
 
-        axios
-            .delete(`http://localhost:3001/notes/${id}`)
-            .then(res => {
-                return res.data
-            })
-        /*
         noteService
             .remove(id)
             .then(removed => removed)
-        */
+
         setNotes(notesList.filter(note => note.id !== id))
     }
 
