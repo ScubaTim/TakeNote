@@ -21,6 +21,9 @@ const NoteEditor = ({ notes, setNotes, toggle }) => {
             .then((returnedNote) => {
                 setNotes(notes.concat(returnedNote))
             })
+            .catch((error) => {
+                alert(`There was an error adding notes. Error Message: ${error}`)
+            })
 
         if (notes.length > 0) {
             toggle();

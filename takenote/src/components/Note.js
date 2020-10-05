@@ -10,6 +10,9 @@ const Note = ({ note, notesList, setNotes }) => {
         noteService
             .remove(id)
             .then(removed => removed)
+            .catch((error) => {
+                alert(`There was an error removing note: ${error}`)
+            })
 
         setNotes(notesList.filter(note => note.id !== id))
     }

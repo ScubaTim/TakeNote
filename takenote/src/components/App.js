@@ -15,6 +15,9 @@ const App = () => {
             .then(initialNotes => {
                 setNotes(initialNotes)
             })
+            .catch((error) => {
+                alert(`There was an error getting notes: ${error}`)
+            })
     }, []);
 
     const handleToggle = () => {
