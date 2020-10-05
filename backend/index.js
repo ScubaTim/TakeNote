@@ -2,9 +2,12 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 
+const generateId = require('./services/generateId');
+
 app.use(cors());
 app.use(express.json());
 app.use(express.static('build'));
+
 
 let notes = [];
 
@@ -29,13 +32,6 @@ app.delete('/notes/:id', (req, res) => {
     return res.status(204).end();
 })
 
-const generateId = () => {
-    let maxId = notes.length > 0
-        ? Math.max(...notes.map(n => n.id))
-        : 0;
-    return maxId + 1;
-}
-
 app.post('/notes', (req, res) => {
     const body = req.body;
 
@@ -50,7 +46,7 @@ app.post('/notes', (req, res) => {
         content: body.content,
         important: body.important || false,
         date: new Date().toLocaleString(),
-        id: generateId()
+        id: generateId(notes)
     };
 
     notes = notes.concat(note);
