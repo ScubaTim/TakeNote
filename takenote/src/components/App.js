@@ -19,14 +19,13 @@ const App = () => {
 
     const handleToggle = () => {
         setToggleEditorView(!toggleEditorView);
-        console.log(notes)
     }
 
     //If no notes to display, show note editor instead.
     if (notes.length === 0) {
         return (
             <div>
-                <Toolbar toggle={handleToggle} />
+                <Toolbar toggle={handleToggle} toggleView={toggleEditorView} />
                 <Container>
                     <Row>
                         <Col>
@@ -41,9 +40,8 @@ const App = () => {
     //If there are notes, show NoteList unless toggleEditorView is pressed, then show NoteEditor.
     return (
         <div>
-            <Toolbar toggle={handleToggle} />
+            <Toolbar toggle={handleToggle} toggleView={toggleEditorView} />
             <Container>
-
                 {toggleEditorView
                     ? <Row><Col><NoteEditor notes={notes} setNotes={setNotes} toggle={handleToggle} /> </Col></Row>
                     : <Row><Col><NotesList notesList={notes} setNotes={setNotes} /></Col></Row>}
