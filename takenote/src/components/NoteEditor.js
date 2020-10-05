@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import noteService from '../services/note';
 import { Button, Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
 
-const NoteEditor = ({ notes, setNotes, toggle }) => {
+const NoteEditor = ({ notes, setNotes, toggleEditorView }) => {
     const [noteContent, setNoteContent] = useState("");
     const [newTitle, setNewTitle] = useState("");
     const [isImportant, setIsImportant] = useState(false);
 
-    const handleAddNote = (event) => {
-        event.preventDefault();
+    const handleAddNote = (e) => {
+        e.preventDefault();
 
         const newNote = {
             title: newTitle,
@@ -19,47 +19,38 @@ const NoteEditor = ({ notes, setNotes, toggle }) => {
         noteService
             .create(newNote)
             .then((returnedNote) => {
-                //Concat does not modify old array, returns new array with newNote (returnedNote from backend) added.
                 setNotes(notes.concat(returnedNote))
             })
             .catch((error) => {
                 alert(`There was an error adding notes. Error Message: ${error}`)
             })
 
-        //If there are no notes, toggle back to the editor? Maybe? ********* Idk what this does *********
+        //toggleEditorViews away from the editor on submit, back to NotesList. If () statement is necessary, or first note doesn't cause toggle
         if (notes.length > 0) {
-            toggle();
+            toggleEditorView();
         }
     }
 
-    const handleTitleChange = (e) => {
-        setNewTitle(e.target.value);
-    }
-
-    const handleNoteContentChange = (e) => {
-        setNoteContent(e.target.value);
-    }
-
     return (
-        <Form className="border px-3 py-4 my-4" onSubmit={handleAddNote}>
+        <Form className="border px-3 pt-4 pb-2 my-4" onSubmit={handleAddNote}>
             <h2 className="text-center">New Note</h2>
             <FormGroup>
                 <Label for="title">Title:</Label>
-                <Input type="text" id="title" onChange={handleTitleChange} />
+                <Input type="text" id="title" onChange={(e) => setNewTitle(e.target.value)} />
             </FormGroup>
             <FormGroup>
                 <Label for="noteText">Body:</Label>
-                <Input type="textarea" id="noteText" onChange={handleNoteContentChange} style={{ minHeight: "50vh" }} />
+                <Input type="textarea" id="noteText" onChange={(e) => setNoteContent(e.target.value)} style={{ minHeight: "38vh" }} />
             </FormGroup>
             <Row>
                 <Col>
                     <Button type="submit" color="primary">Save</Button>
                 </Col>
                 <Col>
-                    <FormGroup className="text-right py-2 mr-3" check>
+                    <FormGroup className="text-right pt-2 mr-3" check>
                         <Input type="checkbox" onClick={() => setIsImportant(!isImportant)} />
-                        <Label check >
-                            <strong>Important</strong>
+                        <Label check className="mb-2" >
+                            <strong>Mark Important</strong>
                         </Label>
                     </FormGroup>
                 </Col>

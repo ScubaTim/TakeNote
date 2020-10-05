@@ -1,14 +1,10 @@
 import React from 'react';
-import {
-    Navbar,
-    NavbarBrand,
-    Nav,
-    NavItem,
-    Button
-} from 'reactstrap';
+import { Navbar, NavbarBrand, Nav, NavItem, Button } from 'reactstrap';
 
-const Toolbar = ({ toggle, toggleView }) => {
-    const label = toggleView ? 'Cancel' : `+ Create New Note`
+const Toolbar = ({ editorView, toggleEditorView }) => {
+
+    const label = editorView ? <span>Cancel</span> : <span><strong>+</strong> New Note</span>
+    const btnColor = editorView ? 'warning' : 'info'
 
     return (
         <Navbar color="light" light className="border-bottom">
@@ -17,7 +13,7 @@ const Toolbar = ({ toggle, toggleView }) => {
             </NavbarBrand>
             <Nav>
                 <NavItem>
-                    <Button color={toggleView ? 'warning' : 'info'} onClick={toggle}>
+                    <Button color={btnColor} onClick={toggleEditorView}>
                         {label}
                     </Button>
                 </NavItem>
