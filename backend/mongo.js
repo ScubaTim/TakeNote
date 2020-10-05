@@ -7,7 +7,7 @@ if (process.argv.length < 3) {
 
 const password = process.argv[2]
 
-const url = `mongodb+srv://tim1:${password}@notes.2wiph.mongodb.net/Notes?retryWrites=true&w=majority`
+const url = `mongodb+srv://tim2:${password}@notes.2wiph.mongodb.net/Notes?retryWrites=true&w=majority`
 
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true })
 
@@ -20,7 +20,7 @@ const noteSchema = new mongoose.Schema({
 const Note = mongoose.model('Note', noteSchema)
 
 const note = new Note({
-    content: 'HTML is easy!',
+    content: 'HTML is easy!Numbah2',
     date: new Date(),
     important: true,
 })

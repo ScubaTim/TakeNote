@@ -28,6 +28,7 @@ app.get('/notes/:id', (req, res) => {
 
 app.delete('/notes/:id', (req, res) => {
     const id = Number(req.params.id);
+
     notes = notes.filter(note => note.id !== id)
     return res.status(204).end();
 })
@@ -50,10 +51,8 @@ app.post('/notes', (req, res) => {
     };
 
     notes = notes.concat(note);
-
     res.json(note);
 })
-
 
 
 const PORT = process.env.PORT || 3001;
