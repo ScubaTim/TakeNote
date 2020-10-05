@@ -5,11 +5,13 @@ import NotesList from './NotesList';
 import NoteEditor from './NoteEditor';
 import { Container, Row, Col } from 'reactstrap';
 
+
 const App = () => {
     const [notes, setNotes] = useState([]);
     const [toggleEditorView, setToggleEditorView] = useState(false);
 
     useEffect(() => {
+        //Gets all notes from database
         noteService
             .getAll()
             .then(initialNotes => {
@@ -48,7 +50,6 @@ const App = () => {
                 {toggleEditorView
                     ? <Row><Col><NoteEditor notes={notes} setNotes={setNotes} toggle={handleToggle} /> </Col></Row>
                     : <Row><Col><NotesList notesList={notes} setNotes={setNotes} /></Col></Row>}
-
             </Container>
         </div>
     );

@@ -3,28 +3,30 @@ import noteService from '../services/note';
 import { Button, Form, FormGroup, Label, Input, Row, Col } from 'reactstrap';
 
 const NoteEditor = ({ notes, setNotes, toggle }) => {
-
     const [noteContent, setNoteContent] = useState("");
     const [newTitle, setNewTitle] = useState("");
     const [isImportant, setIsImportant] = useState(false);
 
     const handleAddNote = (event) => {
         event.preventDefault();
-        const newObject = {
+
+        const newNote = {
             title: newTitle,
             content: noteContent,
             important: isImportant,
         }
 
         noteService
-            .create(newObject)
+            .create(newNote)
             .then((returnedNote) => {
+                //Concat does not modify old array, returns new array with newNote (returnedNote from backend) added.
                 setNotes(notes.concat(returnedNote))
             })
             .catch((error) => {
                 alert(`There was an error adding notes. Error Message: ${error}`)
             })
 
+        //If there are no notes, toggle back to the editor? Maybe? ********* Idk what this does *********
         if (notes.length > 0) {
             toggle();
         }
@@ -57,7 +59,7 @@ const NoteEditor = ({ notes, setNotes, toggle }) => {
                     <FormGroup className="text-right py-2 mr-3" check>
                         <Input type="checkbox" onClick={() => setIsImportant(!isImportant)} />
                         <Label check >
-                            <strong >Important</strong>
+                            <strong>Important</strong>
                         </Label>
                     </FormGroup>
                 </Col>

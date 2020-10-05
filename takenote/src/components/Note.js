@@ -5,16 +5,16 @@ import { Card, CardTitle, CardText, Row, Col, Button, Badge } from 'reactstrap';
 const Note = ({ note, notesList, setNotes }) => {
 
     const handleRemoveNote = () => {
-        const id = note.id;
-
+        //Removes note from database
         noteService
-            .remove(id)
+            .remove(note.id)
             .then(removed => removed)
             .catch((error) => {
                 alert(`There was an error removing note: ${error}`)
             })
 
-        setNotes(notesList.filter(note => note.id !== id))
+        //New state minus the removed note
+        setNotes(notesList.filter(n => n.id !== note.id))
     }
 
     return (

@@ -3,7 +3,7 @@ import Note from './Note';
 import styled from 'styled-components';
 import { Row, Col, Input, Label } from 'reactstrap';
 
-export const ListField = styled('div')`
+const ListField = styled('div')`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -13,11 +13,22 @@ export const ListField = styled('div')`
 const NotesList = ({ notesList, setNotes }) => {
     const [showImportant, setShowImportant] = useState(false);
 
-    const handleImportantOnly = () => {
+    const toggleImportantOnly = () => {
         setShowImportant(!showImportant);
     }
 
+    const important = (
+        <Col>
+            <hr />
+            <Label check className="ml-4 pl-1 my-3">
+                <Input type="checkbox" onClick={() => toggleImportantOnly()} />
+                {showImportant ? <span>Show Important Only</span> : <span>Show All</span>}
+            </Label>
+        </Col>
+    )
+
     if (showImportant === false) {
+        //Generates a list of only the important notes with correct columns
         const Notes = notesList.map((note, i) => (
             <Col key={i} xs="12" sm="6" md="4">
                 <Note note={note} notesList={notesList} setNotes={setNotes} />
@@ -36,13 +47,7 @@ const NotesList = ({ notesList, setNotes }) => {
                     </Col>
                 </Row>
                 <Row>
-                    <Col>
-                        <hr />
-                        <Label check className="ml-4 pl-1 my-3">
-                            <Input type="checkbox" onClick={() => handleImportantOnly()} />
-                            <span>Show Important Only</span>
-                        </Label>
-                    </Col>
+                    {important}
                 </Row>
             </>
         );
@@ -71,13 +76,7 @@ const NotesList = ({ notesList, setNotes }) => {
                     </Col>
                 </Row>
                 <Row>
-                    <Col>
-                        <hr />
-                        <Label check >
-                            <Input type="checkbox" onClick={() => handleImportantOnly()} />
-                        Show All
-                        </Label>
-                    </Col>
+                    {important}
                 </Row>
             </>
         )
