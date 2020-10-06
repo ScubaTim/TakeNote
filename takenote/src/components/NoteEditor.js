@@ -12,7 +12,7 @@ const NoteEditor = ({ notes, setNotes, toggleEditorView }) => {
     const handleAddNote = useCallback(
         (e) => {
             e.preventDefault();
-            console.log("newTitle, noteContent, isImportant", newTitle, noteContent, isImportant)
+
             const newNote = {
                 title: newTitle,
                 content: noteContent,
