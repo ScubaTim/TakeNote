@@ -12,7 +12,7 @@ const NotesList = ({ notesList, setNotes }) => {
             notesList
                 .filter((note) => showImportant ? note.important : note)
                 .map((note, i) => (
-                    <Col key={i} xs="4">
+                    <Col key={i} xs="12" sm="6" md="4">
                         <Note note={note} notesList={notesList} setNotes={setNotes} />
                     </Col>
                 ))

@@ -33,7 +33,7 @@ app.post('/notes', (request, response, next) => {
         title: body.title,
         content: body.content,
         important: body.important || false,
-        date: new Date().toUTCString(),
+        date: new Date(),
     })
 
     note.save().then(savedNote => {

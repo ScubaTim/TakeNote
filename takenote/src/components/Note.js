@@ -20,7 +20,7 @@ const Note = ({ note, notesList, setNotes }) => {
     }, [setNotes, notesList, note]);
 
     return (
-        <Card body className="mx-4 my-3" >
+        <Card body className="mx-4 my-3">
             <Row>
                 <Col>
                     <CardTitle className="font-weight-bold">{note.title}</CardTitle>
