@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import noteService from '../services/note';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Container, Row, Col } from 'reactstrap';
+
+import noteService from '../services/note';
+
 import Toolbar from './Toolbar';
 import NotesList from './NotesList';
 import NoteEditor from './NoteEditor';
@@ -21,34 +23,22 @@ const App = () => {
             })
     }, []);
 
-    const toggleEditorView = () => {
-        setEditorView(!editorView);
-    }
+    const toggleEditorView = useCallback(
+        () => {
+            setEditorView(!editorView);
+        }, [editorView]);
 
-    //If no notes to display, show note editor instead.
-    if (notes.length === 0) {
-        return (
-            <>
-                <Toolbar toggleEditorView={toggleEditorView} editorView={editorView} />
-                <Container>
-                    <Row>
-                        <Col>
-                            <NoteEditor notes={notes} setNotes={setNotes} toggleEditorView={toggleEditorView} />
-                        </Col>
-                    </Row>
-                </Container>
-            </>
-        );
-    }
-
-    //If there are notes, show NoteList UNLESS editorView is pressed, then show NoteEditor.
     return (
         <>
             <Toolbar toggleEditorView={toggleEditorView} editorView={editorView} />
             <Container>
-                {editorView
-                    ? <Row><Col><NoteEditor notes={notes} setNotes={setNotes} toggleEditorView={toggleEditorView} /></Col></Row>
-                    : <Row><Col><NotesList notesList={notes} setNotes={setNotes} toggleEditorView={toggleEditorView} /></Col></Row>}
+                <Row>
+                    <Col>
+                        {editorView || notes.length === 0
+                            ? <NoteEditor notes={notes} setNotes={setNotes} toggleEditorView={toggleEditorView} />
+                            : <NotesList notesList={notes} setNotes={setNotes} toggleEditorView={toggleEditorView} />}
+                    </Col>
+                </Row>
             </Container>
         </>
     );
