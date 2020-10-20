@@ -62,11 +62,11 @@ const NoteEditor = ({ notes, setNotes, toggleEditorView }) => {
                 <Input type="textarea" id="noteText" onChange={handleNoteContent} style={{ minHeight: "38vh" }} />
             </FormGroup>
             <Row>
-                <Col>
+                <Col xs="auto">
                     <Button type="submit" color="primary">Save</Button>
                 </Col>
                 <Col>
-                    <FormGroup className="text-right pt-2 mr-3" check>
+                    <FormGroup className="text-right pt-2" check>
                         <Input type="checkbox" onClick={handleIsImportant} />
                         <Label check className="mb-2 font-weight-bold" >
                             Mark Important
